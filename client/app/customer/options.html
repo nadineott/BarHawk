@@ -10,83 +10,82 @@
 <p ng-show='tabFail'>You've already closed your tab or have yet to order a drink!</p>
 <h1 class="title-heading">Bar Hawk</h1>
 <div id="options">
-
-<h2>Your current BAC is</h2>
-<div id='bar-chart'></div>
+    <h2>Your current BAC is</h2>
+    <div id='bar-chart'></div>
     <h2>Hi, {{currentUser.firstname}}!</h2>
     <h4>Your Drink Count: {{currentUser.drinkCount}}</h4>
     <h4> Estimated BAC: {{currentUser.BAC}}%</h4>
-
-        <!-- BAC spectrum slider -->
-     <!--  <input id='spectrum' type="range" />
+    <!-- BAC spectrum slider -->
+    <!--  <input id='spectrum' type="range" />
       <input type='text'/ id='spectrumText' size="75%" >
       <br>
       <br> -->
-
-  </div>
-
-    <!-- ORDER AND ORDER/CLOSE BUTTONS -->
-    <div class='orderButtons'>
-        <p class="order"> <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/sc-min_jwehxr.png"> Your order <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/sc-min_jwehxr.png">
-            <br>
-            <div class="selection"> {{ order.drinkType }} </div>
-        </p>
-        <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
-
-        <br>
-        <br>
-        <div id='results'>
-            <p ng-show='orderSuccess'>Order placed.</p>
-            <p ng-show='orderFail'>Sorry! There was an error. </p>
-        </div>
-        <button class="btn btn-primary" ng-click='orderAndCloseTab()'>Submit and Close Tab</button>
-        <div ng-show='orderCloseSuccess'>
-            <p>You've successfully placed an order for {{savedDrinkType}} and closed your tab.</p>
-            <p>Tab Total: ${{userTab.totalprice}}</p>
-            <br>
-        </div>
-    </div>
-    <!-- RADIO BUTTONS FOR DRINK DISPLAY -->
-    <div class="selectionOptions">
-        <ul>
-            <li>
-                <input type="radio" id="a-option" ng-model="type" name="selector">
-                <label for="a-option">All</label>
-            </li>
-            <li>
-                <input type="radio" id="b-option" ng-model="type" name="selector" value="beer">
-                <label for="b-option">Beer</label>
-            </li>
-            <li>
-                <input type="radio" id="w-option" ng-model="type" name="selector" value="wine">
-                <label for="w-option">Wine</label>
-            </li>
-            <li>
-                <input type="radio" id="m-option" ng-model="type" name="selector" value="mixed">
-                <label for="m-option">Mixed Drinks</label>
-            </li>
-            <li>
-                <input type="radio" id="l-option" ng-model="type" name="selector" value="liquor">
-                <label for="l-option">Liquor</label>
-            </li>
-        </ul>
-    </div>
-    <!-- DRINK IMAGE DISPLAY -->
-    <div class="drinkDisplay">
-        <ul>
-            <li ng-repeat="drink in drinks.list | filter:type: type">
-                <div class="drinkCell">
-                    <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
-                    <br>
-                    <p class="drinkName"> {{ drink.name }} </p>
-                    <p class="drinkPrice"> ${{ drink.price }} </p>
-                    <br>
-                    <br>
-                </div>
-            </li>
-        </ul>
-    </div>
-    <br>
-    <br>
 </div>
-<br
+<!-- ORDER AND ORDER/CLOSE BUTTONS -->
+<div class='orderButtons'>
+    <p class="order"> <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/sc-min_jwehxr.png"> Your order <img src="http://res.cloudinary.com/hidgkk5lm/image/upload/v1458675036/sc-min_jwehxr.png">
+        <br>
+        <div class="selection"> {{ order.drinkType }} </div>
+    </p>
+    <button class="btn btn-primary" ng-click='orderOnly()'>Submit Order</button>
+    <br>
+    <br>
+    <div id='results'>
+        <p ng-show='orderSuccess'>Order placed.</p>
+        <p ng-show='orderFail'>Sorry! There was an error. </p>
+    </div>
+    <button class="btn btn-primary" ng-click='orderAndCloseTab()'>Submit and Close Tab</button>
+    <div ng-show='orderCloseSuccess'>
+        <p>You've successfully placed an order for {{savedDrinkType}} and closed your tab.</p>
+        <p>Tab Total: ${{userTab.totalprice}}</p>
+        <br>
+    </div>
+</div>
+<!-- RADIO BUTTONS FOR DRINK DISPLAY -->
+<div class="selectionOptions">
+    <ul>
+        <li>
+            <input type="radio" id="all" ng-model="type" name="selector">
+            <label for="all">All</label>
+        </li>
+        <li>
+            <input type="radio" id="beer" ng-model="type" value="beer">
+            <label for="beer">Beer</label>
+        </li>
+        <li>
+            <input type="radio" id="wine" ng-model="type" value="wine">
+            <label for="wine">Wine</label>
+        </li>
+        <li>
+            <input type="radio" id="mixed" ng-model="type" value="mixed">
+            <label for="mixed">Mixed Drinks</label>
+        </li>
+        <li>
+            <input type="radio" id="liquor" ng-model="type" value="liquor">
+            <label for="liquor">Liquor</label>
+        </li>
+    </ul>
+<!-- TEST TO FILTER FOR DRINKS THAT ARE 96 CALORIES -->
+<!--     <input type="radio" id="lowcal" ng-model="calories" value = 96>
+    <label for="lowcal">Low Calorie Drinks</label> -->
+
+</div>
+<!-- DRINK IMAGE DISPLAY -->
+<div class="drinkDisplay">
+    <ul>
+        <li ng-repeat="drink in drinks.list | filter:type: type">
+            <div class="drinkCell">
+                <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
+                <br>
+                <p class="drinkName"> {{ drink.name }} </p>
+                <p class="drinkPrice"> ${{ drink.price }} </p>
+                <br>
+                <br>
+            </div>
+        </li>
+    </ul>
+</div>
+<br>
+<br>
+</div>
+<br>
