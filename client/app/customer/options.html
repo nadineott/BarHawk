@@ -65,20 +65,28 @@
             <label for="liquor">Liquor</label>
         </li>
     </ul>
-<!-- TEST TO FILTER FOR DRINKS THAT ARE 96 CALORIES -->
-<!--     <input type="radio" id="lowcal" ng-model="calories" value = 96>
-    <label for="lowcal">Low Calorie Drinks</label> -->
+<!-- FILTER FOR LOW CALORIE DRINKS -->
+
+    <input type="radio" name = "cal" id="allCalories" ng-model="allCalories" value = 150>
+    <label for="allCalories">All Calorie Drinks</label>
+
+    <input type="radio" name = "cal" id="lowCalories" ng-model="lowCalories" value = 150>
+    <label for="lowCalories">Low Calorie Drinks</label>
+    
 
 </div>
+
 <!-- DRINK IMAGE DISPLAY -->
 <div class="drinkDisplay">
     <ul>
-        <li ng-repeat="drink in drinks.list | filter:type: type">
+        <li ng-repeat="drink in drinks.list | filter: type: type | filter: lowCalories: isLowCal(drink) | filter: allCalories: allCals(drink)">
             <div class="drinkCell">
                 <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
                 <br>
                 <p class="drinkName"> {{ drink.name }} </p>
-                <p class="drinkPrice"> ${{ drink.price }} </p>
+                <p class="drinkPrice"> ${{ drink.price }} </p><br>
+                <p class="drinkPrice"> {{ drink.calories }}cal </p>
+                <!-- NumberOfStamps : !0-->
                 <br>
                 <br>
             </div>
