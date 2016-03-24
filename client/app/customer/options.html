@@ -67,26 +67,36 @@
     </ul>
 <!-- FILTER FOR LOW CALORIE DRINKS -->
 
-    <input type="radio" name = "cal" id="allCalories" ng-model="allCalories" value = 150>
-    <label for="allCalories">All Calorie Drinks</label>
+    <input type="radio" name = "health" id="reset" ng-model="reset" value = "x">
+    <label for="reset">Reset</label>
 
-    <input type="radio" name = "cal" id="lowCalories" ng-model="lowCalories" value = 150>
+    <input type="radio" name = "health" id="lowCalories" ng-model="lowCalories" value =  "x">
     <label for="lowCalories">Low Calorie Drinks</label>
-    
+
+    <input type="radio" name = "health" id="zeroCarb" ng-model="zeroCarb" value = "x">
+    <label for="zeroCarb">Zero Carb Drinks</label>
+
+    <input type="radio" name = "health" id="test" ng-model="calories" value = "x">
+    <label for="test">test cal filter</label>
+
+    <button orderByValue = "calories">calories</button>
 
 </div>
 
 <!-- DRINK IMAGE DISPLAY -->
 <div class="drinkDisplay">
     <ul>
-        <li ng-repeat="drink in drinks.list | filter: type: type | filter: lowCalories: isLowCal(drink) | filter: allCalories: allCals(drink)">
+<!--         <li ng-repeat="drink in drinks.list | filter: type: type | orderBy: orderByValue "> -->
+<!--        example code     <tr ng-repeat="friend in friends | orderBy:'-age'"> -->
+        <li ng-repeat="drink in drinks.list | filter: type: type | filter: lowCalories: isLowCal(drink)">
+            
             <div class="drinkCell">
                 <img ng-src="{{drink.imageurl}}" alt="alt" ng-model="order.drinkType" ng-click="order.drinkType = drink.name" value='drink.name' />
                 <br>
                 <p class="drinkName"> {{ drink.name }} </p>
                 <p class="drinkPrice"> ${{ drink.price }} </p><br>
                 <p class="drinkPrice"> {{ drink.calories }}cal </p>
-                <!-- NumberOfStamps : !0-->
+                <p class = "drinkPrice"> {{ drink.carbs }}carbs
                 <br>
                 <br>
             </div>
